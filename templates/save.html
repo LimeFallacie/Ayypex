@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AYYPARK!</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+	<div class="container-fluid">
+		<!-- header image -->
+		<a class="navbar-brand" href="index.html"><img src="img/AYYPARK.png" alt=""></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarResponsive">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active" href="#">
+					<a class="nav-link" href="#">Home</a>
+				</li>
+				<li class="nav-item" href="#">
+					<a class="nav-link" href="#">FAQ</a>
+				</li>
+
+			</ul>
+
+		</div>
+
+
+	</div>
+
+</nav>
+
+<!--- Responsive Map -->
+
+<div class="container-fluid">
+
+</div>
+<iframe class="col-md-12"
+src='https://tools.onemap.sg/amm/amm.html?&marker=latLng:1.30165247408903,103.898379738386!colour:red&marker=latLng:1.30069750464779,103.89944640679!colour:lightgreen!rType:TRANSIT!rDest:1.30165247408903,103.898379738386&zoomLevl=13&popupWidth=200&popupHeight=500&design=Night' height=450px width=450px scrolling='no' frameborder='0' allowfullscreen='allowfullscreen'>
+
+</iframe>
+
+
+<!--- Jumbotron -->
+<div class="container-fluid">
+	<form>
+		<div class="row jumbotron justify-content-center">
+			<p class="lead" name="latlng" id="latlng">vvvvvvvvvvvv Enter Your Location Here vvvvvvvvv</p>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">@</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Your Location" size="300px">
+					<div class="input-group-append">
+						<button type="submit" class="btn btn-outline-primary"> Find! </button>
+
+
+					</div>
+
+
+				</div>
+				<button type="button" class="btn btn-outline-primary col-md-12" onclick="getLocation()"> GPS Location </button>
+			</form>
+		</div>
+</div>
+
+<!--- Welcome Section -->
+
+
+<!--- Three Column Section -->
+
+
+<!--- Two Column Section -->
+
+
+<!--- Fixed background -->
+
+
+<!--- Emoji Section -->
+
+
+<!--- Meet the team -->
+
+
+<!--- Cards -->
+
+
+<!--- Two Column Section -->
+
+
+<!--- Connect -->
+
+
+<!--- Footer -->
+
+<!-- Geolocation script -->
+<script>
+var x = document.getElementById("latlng");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  " Longitude: " + position.coords.longitude;
+}
+</script>
+
+
+
+</body>
+</html>
