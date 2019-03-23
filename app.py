@@ -72,4 +72,5 @@ def main():
 
 @app.route('/')
 def hello_world():
+    return render_template('')
     return '<h1>ttt</h1>'
