@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import math
 import requests
 import json
@@ -53,6 +53,7 @@ def svy_to_wgs(X, Y):
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
+    # import pdb; pdb.set_trace()
     if request.method == 'POST':
         xa, ya = addr_to_svy(request.form['address'])
         start = svy_to_wgs(xa, ya)
@@ -63,3 +64,9 @@ def hello_world():
         end = "1.37219780826066,103.901539947637"
         lots = 555
     return render_template('index.html', start=start, end=end, lots=lots)
+
+@app.route('/postmethod', methods=['POST'])
+def postmethod():
+    data = request.get_json()
+    print(data)
+    return jsonify(data)

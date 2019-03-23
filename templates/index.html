@@ -57,7 +57,7 @@
 
     <!--- Jumbotron -->
     <div class="container-fluid">
-      <form>
+      <form action="{{url_for('hello_world')}}" method="post">
         <div class="row jumbotron justify-content-center">
           <img src="/static/Border.png" alt="vvvvvvvvvvv">
           <p class="lead" name="latlng" id="latlng">Enter Your Location Here</p>
@@ -65,7 +65,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">@</span>
             </div>
-            <input type="text" class="form-control" placeholder="Your Location" size="300px">
+            <input type="text" name="address" class="form-control" placeholder="Your Location" size="300px">
             <div class="input-group-append">
               <button type="submit" class="btn btn-outline-primary"> Find! </button>
 
@@ -130,7 +130,6 @@
                 console.log(err);
               }
             });
-            document.getElementById("test").innerHTML = position.coords.latitude;
 
           });
         } else {
