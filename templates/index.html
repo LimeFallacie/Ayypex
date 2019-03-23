@@ -11,7 +11,7 @@
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="style.css" rel="stylesheet">
   </head>
-  <body>
+  <body id="ResponseDiv">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
@@ -42,6 +42,9 @@
 
     <!--- Responsive Map -->
 
+    <!-- <div id='ResponseDiv'> -->
+    <!--     This is a div to hold the response. -->
+    <!-- </div> -->
     <div class="container-fluid">
 
     </div>
@@ -122,9 +125,10 @@
               url: "/postmethod",
               contentType: "application/json",
               data: JSON.stringify({location: pos}),
-              dataType: "json",
+              dataType: "html",
               success: function(response) {
                 console.log(response);
+                $('#ResponseDiv').html(response);
               },
               error: function(err) {
                 console.log(err);

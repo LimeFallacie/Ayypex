@@ -35,7 +35,7 @@ def find_nearest(ax, ay):
         carparkb = b['carpark_number']
         try:
             lots_left = adict[carparkb]
-            print(lots_left, carparkb, math.hypot(ax - xb, ay - yb))
+            # print(lots_left, carparkb, math.hypot(ax - xb, ay - yb))
             if carparkb in adict.keys() and lots_left > 0:
                 biglist.append((math.hypot(ax - xb, ay - yb), carparkb, xb, yb, lots_left))
         except KeyError:
@@ -69,4 +69,13 @@ def hello_world():
 def postmethod():
     data = request.get_json()
     print(data)
-    return jsonify(data)
+    xa = data['location']['lat']
+    ya = data['location']['lng']
+    start = str(xa) + "," + str(ya)
+    print(start)
+    xb, yb, lots = find_nearest(xa, ya)
+    end = svy_to_wgs(xb, yb)
+    print(end)
+    # import pdb; pdb.set_trace()
+    return render_template('index.html', start=start, end=end, lots=lots)
+    # return jsonify(data)
