@@ -19,23 +19,36 @@ def addr_to_svy(addr):
 
 # def find_nearest(a={"x": 11745, "y": 36284}):
 def find_nearest(ax, ay):
+    loturl = 'https://api.data.gov.sg/v1/transport/carpark-availability'
     with open('data.json') as f:
         carpark_list = json.load(f)
     biglist = []
+    Jlots = requests.get(loturl).json()
+    lots = Jlots['items'][0]['carpark_data']
+    lots_left = 0
+
     for b in carpark_list:
         xb = float(b['x'])
         yb = float(b['y'])
         carpark = b['carpark_number']
         biglist.append((math.hypot(ax - xb, ay - yb), carpark, xb, yb))
-        lots = 555
     r = min(biglist)
-    return (r[2], r[3], lots)
+    for lot in lots:
+        if lot['carpark_number'] == carpark:
+            lots_left = lot['carpark_info'][0]['total_lots']
+
+    return (r[2], r[3], lots_left)
 
 
-def check_lots():
+def check_lots(carpark_id):
     loturl = 'https://api.data.gov.sg/v1/transport/carpark-availability'
-    requests.get(loturl).json()
-
+    Jlots = requests.get(loturl).json()
+    lots = Jlots['items'][0]['carpark_data']
+    lots_left = 0
+    for lot in lots:
+        if lot['carpark_number'] == carpark_id:
+            lots_left = lot['carpark_info'][0]['total_lots']
+    return lots_left
 
 def svy_to_wgs(X, Y):
     url = 'https://developers.onemap.sg/commonapi/convert/3414to4326?'
