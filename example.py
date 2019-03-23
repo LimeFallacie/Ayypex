@@ -46,3 +46,8 @@ def main():
 
 main()
 
+postal_to_svy21(postalcode) -> sv21
+
+get_closest(sv21) -> list:{ (sv21, car_park_no, available_lots) }
+
+get_route(start:sv21, end:sv21) -> png
