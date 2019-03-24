@@ -9,7 +9,7 @@ ONEMAP_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1MTksInVzZXJfaWQ
 
 def addr_to_svy(addr):
     """
-    converts an andress to the svy21 format
+    converts an andress to an svy21 coord
     """
     domain = "https://developers.onemap.sg/commonapi/search?searchVal="
     options = "&returnGeom=Y&getAddrDetails=N"
@@ -17,10 +17,22 @@ def addr_to_svy(addr):
     return (float(r['X']), float(r['Y']))
 
 
-# def find_nearest(a={"x": 11745, "y": 36284}):
+def svy_to_wgs(x, y):
+    """
+    Converts an svy21 coord to wgs48 coord
+    """
+    url = 'https://developers.onemap.sg/commonapi/convert/3414to4326?'
+    params = 'X=' + str(x) + '&Y=' + str(y)
+    r = requests.get(url + params).json()
+    return str(r['latitude']) + "," + str(r['longitude'])
+
+
 def find_nearest(ax, ay):
+    """
+    Given (ax, ay) coord, find (bx, by) of closest carpark
+    """
     loturl = 'https://api.data.gov.sg/v1/transport/carpark-availability'
-    with open('data.json') as f:
+    with open('carpark_data.json') as f:
         carpark_list = json.load(f)
     biglist = []
     Jlots = requests.get(loturl).json()
@@ -44,16 +56,11 @@ def find_nearest(ax, ay):
     return (r[2], r[3], r[4])
 
 
-def svy_to_wgs(X, Y):
-    url = 'https://developers.onemap.sg/commonapi/convert/3414to4326?'
-    params = 'X=' + str(X) + '&Y=' + str(Y)
-    r = requests.get(url + params).json()
-    return str(r['latitude']) + "," + str(r['longitude'])
-
-
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
-    # import pdb; pdb.set_trace()
+    """
+    Handles
+    """
     if request.method == 'POST':
         xa, ya = addr_to_svy(request.form['address'])
         start = svy_to_wgs(xa, ya)
@@ -62,11 +69,14 @@ def hello_world():
     else:
         start = "1.37219780826066,103.901539947637"
         end = "1.37219780826066,103.901539947637"
-        lots = 555
+        lots = "-"
     return render_template('index.html', start=start, end=end, lots=lots)
 
 @app.route('/postmethod', methods=['POST'])
 def postmethod():
+    """
+    Handling AJAX
+    """
     data = request.get_json()
     print(data)
     xa = data['location']['lat']

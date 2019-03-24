@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
       <div class="container-fluid">
         <!-- header image -->
-        <a class="navbar-brand" href="index.html"><img src="img/AYYPARK.png" alt=""></a>
+        <a class="navbar-brand" href="index.html"><img src="/static/AYYPARK.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                                                      data-target="#navbarResponsive">
           <span class="navbar-toggler-icon"></span>
@@ -48,21 +48,21 @@
     <div class="container-fluid">
 
     </div>
-    <!-- <iframe class="col&#45;md&#45;12" -->
-    <!-- src='https://tools.onemap.sg/amm/amm.html?&#38;marker=latLng:1.30165247408903,103.898379738386!colour:red&#38;marker=latLng:1.30069750464779,103.89944640679!colour:lightgreen!rType:TRANSIT!rDest:1.30165247408903,103.898379738386&#38;zoomLevl=13&#38;popupWidth=200&#38;popupHeight=500&#38;design=Night' height=450px width=450px scrolling='no' frameborder='0' allowfullscreen='allowfullscreen'> -->
     <!-- </iframe> -->
+    <h1>Here's the closest carpark. Available lots: {{lots}}</h1>
     <iframe class="col-md-12"
             src='https://tools.onemap.sg/amm/amm.html?&marker=latLng:{{start}}!colour:red&marker=latLng:{{end}}!colour:lightgreen!rType:drive!rDest:{{start}}&zoomLevl=13&popupWidth=200&popupHeight=500&design=Night' height=450px width=450px scrolling='no' frameborder='0' allowfullscreen='allowfullscreen'>
     </iframe>
 
-    <h1>{{lots}}</h1>
 
 
     <!--- Jumbotron -->
     <div class="container-fluid">
       <form action="{{url_for('hello_world')}}" method="post">
         <div class="row jumbotron justify-content-center">
-          <img src="/static/Border.png" alt="vvvvvvvvvvv">
+          <div class="imgbox">
+            <img class="center-fit" src="/static/Border.png" alt="vvvvvvvvvvv">
+          </div>
           <p class="lead" name="latlng" id="latlng">Enter Your Location Here</p>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -81,34 +81,6 @@
       </form>
         </div>
     </div>
-    <!--- Welcome Section -->
-
-
-    <!--- Three Column Section -->
-
-
-    <!--- Two Column Section -->
-
-
-    <!--- Fixed background -->
-
-
-    <!--- Emoji Section -->
-
-
-    <!--- Meet the team -->
-
-
-    <!--- Cards -->
-
-
-    <!--- Two Column Section -->
-
-
-    <!--- Connect -->
-
-
-    <!--- Footer -->
     <script>
       var x = document.getElementById("latlng");
 
