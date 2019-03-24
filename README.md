@@ -1,4 +1,7 @@
 # Ayypex
+
+![Alt Text](https://github.com/LimeFallacie/Ayypex/blob/master/static/demo.gif)
+
 Ayypex Carpark sniffer
 
 This program aims to take in a user address (most likely postal code);
